@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Starter - Twój Pierwszy Kod</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .chapter {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo-container img {
+            max-width: 250px;
+            height: auto;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        h2 {
+            color: #2980b9;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h3 {
+            color: #34495e;
+            margin-top: 25px;
+        }
+        p, li {
+            font-size: 1.05em;
+        }
+        pre {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.95em;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .note {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .warning {
+            background-color: #fff3e0;
+            border-left: 5px solid #e67e22;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .success {
+            background-color: #e8f8f5;
+            border-left: 5px solid #2ecc71;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .divider {
+            text-align: center;
+            font-size: 2em;
+            color: #bdc3c7;
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="logo-container">
+        <img src="https://i.imgur.com/3MswWf9.png" alt="Logo">
+    </div>
+
+    <h1>NODE.JS STARTER: TWÓJ PIERWSZY KOD</h1>
+    <p class="subtitle">Czyli jak stworzyć własnego bota od zera, nie mając o tym zielonego pojęcia.</p>
+
+    <div class="chapter">
+        <h2>WSTĘP: CZYM WŁAŚCIWIE JEST BOT?</h2>
+        <p>Wyobraź sobie, że bot na Discordzie to taki bardzo posłuszny, wirtualny pracownik. Problem w tym, że ten pracownik jest kompletnie ślepy, głuchy i nie zna żadnego języka. Nie potrafi niczego zrobić sam z siebie. Dopiero gdy napiszesz mu odpowiedni kod, dajesz mu "oczy" (żeby widział wiadomości), "uszy" (żeby słyszał komendy) i "usta" (żeby mógł odpisać).</p>
+        <p>Programowanie bota to po prostu pisanie instrukcji krok po kroku. W tym e-booku nauczysz się, jak złożyć swojego pierwszego wirtualnego pracownika. Gotowy? Zaczynamy!</p>
+    </div>
+
+    <div class="chapter">
+        <h2>ROZDZIAŁ 1: WARSZTAT I SILNIK (CO MUSISZ POBRAĆ)</h2>
+        <p>Żeby cokolwiek zbudować, potrzebujesz narzędzi. W przypadku programowania botów potrzebujesz tylko dwóch darmowych programów.</p>
+        
+        <h3>1. Node.js (Silnik)</h3>
+        <p>Node.js to taki "silnik", który sprawia, że nasz kod w ogóle zadziała. Bez niego twój komputer widziałby pliki z kodem jako zwykły, bezużyteczny tekst.</p>
+        <ul>
+            <li>Wejdź na stronę: <strong>nodejs.org</strong>.</li>
+            <li>Pobierz i zainstaluj wersję z napisem <strong>"LTS"</strong>. Instaluje się ją jak każdy program – po prostu klikaj "Dalej" (Next).</li>
+        </ul>
+
+        <h3>2. Visual Studio Code (Warsztat)</h3>
+        <p>To jest twój stół roboczy. To specjalny notatnik stworzony dla programistów. Pokoloruje on twój tekst tak, abyś nie zgubił się w linijkach kodu.</p>
+        <ul>
+            <li>Wejdź na stronę: <strong>code.visualstudio.com</strong>.</li>
+            <li>Pobierz i zainstaluj program.</li>
+        </ul>
+    </div>
+
+    <div class="chapter">
+        <h2>ROZDZIAŁ 2: REJESTRACJA BOTA (DOWÓD OSOBISTY)</h2>
+        <p>Zanim zaczniemy pisać, musimy powiedzieć Discordowi: "Hej, tworzę nowego bota!".</p>
+        <ol>
+            <li>Wejdź na stronę <strong>Discord Developer Portal</strong> i zaloguj się.</li>
+            <li>Kliknij <strong>"New Application"</strong>, nazwij bota i przejdź do zakładki <strong>"Bot"</strong>.</li>
+            <li><strong>TOKEN BOTA:</strong> Kliknij "Reset Token". To długi ciąg znaków. To hasło do bota. Nigdy go nikomu nie dawaj!</li>
+            <li><strong>INTENTY:</strong> Na tej samej stronie (zakładka Bot) zjedź do "Privileged Gateway Intents" i włącz wszystkie trzy przełączniki (Presence, Server Members, Message Content). Kliknij <strong>"Save Changes"</strong>.</li>
+        </ol>
+    </div>
+
+    <div class="chapter">
+        <h2>ROZDZIAŁ 3: BUDUJEMY FUNDAMENTY</h2>
+        <ol>
+            <li>Stwórz na pulpicie folder <strong>"moj-bot"</strong>.</li>
+            <li>Otwórz Visual Studio Code, kliknij <strong>File -> Open Folder</strong> i wybierz ten folder.</li>
+            <li>Otwórz Terminal (<strong>Terminal -> New Terminal</strong>) i wpisz te dwie komendy:
+                <ul>
+                    <li><code>npm init -y</code> (tworzy teczkę na dokumenty bota).</li>
+                    <li><code>npm install discord.js</code> (kupuje botowi słownik języka Discorda).</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <div class="chapter">
+        <h2>ROZDZIAŁ 4: PISZEMY PIERWSZY KOD!</h2>
+        <p>Stwórz nowy plik o nazwie <code>index.js</code> i wklej tam ten podstawowy szkielet bota:</p>
+<pre><code>// 1. IMPORTOWANIE NARZĘDZI I KONFIGURACJA
+const { Client, GatewayIntentBits } = require('discord.js');
+const TOKEN = 'TUTAJ_WKLEJ_SWOJ_TAJNY_TOKEN';
+
+// 2. TWORZENIE BOTA
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent
+    ]
+});
+
+// 3. KIEDY BOT SIE URUCHOMI...
+client.on('ready', () => {
+    console.log(`Zrobione! Bot zalogowal sie jako: ${client.user.tag}`);
+});
+
+// 4. KIEDY KTOS NAPISZE WIADOMOSC...
+client.on('messageCreate', (message) => {
+    if (message.author.bot) return;
+    if (message.content === '!ping') {
+        message.reply('Pong! Moj pierwszy kod dziala!');
+    }
+});
+
+// 5. LOGOWANIE BOTA
+client.login(TOKEN);</code></pre>
+    </div>
+
+    <div class="chapter">
+        <h2>ROZDZIAŁ 5: ODPALAMY MASZYNĘ!</h2>
+        <p>W terminalu (na dole VS Code) wpisz: <code>node index.js</code></p>
+        <p>Jeśli widzisz napis "Zrobione!", wejdź na serwer i napisz <code>!ping</code>. Bot powinien odpisać!</p>
+    </div>
+
+    <div class="chapter">
+        <h2>ROZDZIAŁ 6: COŚ NIE DZIAŁA?</h2>
+        <ul>
+            <li><strong>Błąd "Disallowed Intents"?</strong> Zapomniałeś włączyć przełączników w Rozdziale 2.</li>
+            <li><strong>Błąd "Token Invalid"?</strong> Źle wkleiłeś token w Rozdziale 4.</li>
+            <li><strong>Bot nie odpisuje?</strong> Upewnij się, że zapisałeś plik (Ctrl + S) i zrestartowałeś bota (Ctrl + C w terminalu i wpisz <code>node index.js</code> ponownie).</li>
+        </ul>
+    </div>
+
+    <div class="chapter">
+        <h2>ROZDZIAŁ 7: KOMENDY SLASH (/)</h2>
+        <p>Nowoczesne boty używają ukośnika. Nauczmy bota komendy <code>/del</code>, która kasuje wiadomości. Komendy wymagają specjalnego radaru, zwanego <code>interactionCreate</code>.</p>
+        
+        <p><strong>KROK 1:</strong> Na samej górze pliku zamień pierwszą linijkę na tę, która dodaje nowe narzędzie:</p>
+        <pre><code>const { Client, GatewayIntentBits, ApplicationCommandOptionType } = require('discord.js');</code></pre>
+
+        <p><strong>KROK 2:</strong> Zarejestruj komendę dla Discorda. Wewnątrz bloku <code>client.on('ready', () => { ... })</code> pod napisem <code>console.log</code> dopisz to:</p>
+<pre><code>   client.application.commands.create({
+        name: 'del',
+        description: 'Usuwa wiadomosci',
+        options: [{
+            name: 'ilosc',
+            description: 'Ile usunac?',
+            type: ApplicationCommandOptionType.Integer,
+            required: true
+        }]
+    });</code></pre>
+
+        <p><strong>KROK 3:</strong> Teraz powiedz botowi, co ma zrobić. Nad linijką <code>client.login(TOKEN)</code> (czyli na samym dole, przed końcem pliku) wklej radar na komendy:</p>
+<pre><code>client.on('interactionCreate', async (interaction) => {
+    if (!interaction.isChatInputCommand()) return;
+    if (interaction.commandName === 'del') {
+        const liczba = interaction.options.getInteger('ilosc');
+        await interaction.channel.bulkDelete(liczba);
+        await interaction.reply({ content: `Usunieto ${liczba} wiadomosci!`, ephemeral: true });
+    }
+});</code></pre>
+    </div>
+
+    <div class="divider">• • •</div>
+
+    <div class="chapter">
+        <h2>CZĘŚĆ 2: BAZY DANYCH I ROZBUDOWANIE BOTA</h2>
+        <p>Zwykłe zmienne w kodzie znikają, gdy zrestartujesz bota. Pora nauczyć naszego wirtualnego pracownika zapisywania danych do plików, tworząc trwałą ekonomię i sklep!</p>
+        
+        <h3>ROZDZIAŁ 8: TRYB DEWELOPERA (KLUCZ DO SKLEPU)</h3>
+        <p>Aby bot wiedział, komu nadać rolę lub który produkt kupić w sklepie, będziesz potrzebować numerów ID (długie ciągi cyfr). Discord domyślnie je ukrywa, więc musisz je włączyć!</p>
+        <ul>
+            <li>Otwórz Discorda i wejdź w <strong>Ustawienia Użytkownika</strong> (zębatka na dole).</li>
+            <li>Zjedź po lewej stronie do zakładki <strong>Zaawansowane</strong>.</li>
+            <li>Włącz suwak przy opcji <strong>Tryb dewelopera</strong>.</li>
+            <li><strong>Co to daje?</strong> Od teraz, gdy klikniesz na dowolną rolę, kanał lub użytkownika prawym przyciskiem myszy, pojawi się opcja: "Kopiuj ID".</li>
+        </ul>
+
+        <h3>ROZDZIAŁ 9: TRWAŁA PAMIĘĆ (PLIKI .JSON)</h3>
+        <p>Stworzymy plik do trzymania monet (<code>db.json</code>) oraz asortyment naszego sklepu z rolami (<code>sklep.json</code>).</p>
+        
+        <p><strong>KROK 1: Plik z monetami</strong><br>
+        W swoim folderze bota stwórz nowy plik o nazwie <code>db.json</code>. Wpisz w nim tylko dwie klamry: <code>{}</code> i zapisz plik. Tu bot będzie trzymał monety.</p>
+
+        <p><strong>KROK 2: Plik ze sklepem</strong><br>
+        Stwórz drugi plik o nazwie <code>sklep.json</code>. Wklej tam skopiowane (dzięki trybowi dewelopera) numery ID ról ze swojego serwera i nadaj im ceny:</p>
+<pre><code>{
+  "WKLEJ_TUTAJ_ID_ROLI_1": 50,
+  "WKLEJ_TUTAJ_ID_ROLI_2": 150,
+  "WKLEJ_TUTAJ_ID_ROLI_3": 500
+}</code></pre>
+    </div>
+
+    <div class="chapter">
+        <div class="warning">
+            <h3>ROZDZIAŁ 10: HIERARCHIA RÓL (BARDZO WAŻNE)</h3>
+            <p>Zanim zaczniemy kodować sklep, musisz wiedzieć jedną kluczową rzecz: Bot nigdy nie nada roli graczowi, jeśli ta rola znajduje się wyżej w ustawieniach serwera niż rola samego bota. Wejdź w Ustawienia serwera -> Role na swoim Discordzie. Znajdź rolę swojego bota i przesuń ją na samą górę listy (nad role, które zamierzasz sprzedawać). Inaczej bot będzie sypał błędami!</p>
+        </div>
+    </div>
+
+    <div class="chapter">
+        <h2>ROZDZIAŁ 11: TWORZYMY SKLEP (KROK PO KROKU)</h2>
+        <p>Zanim zbudujesz pełen sklep, musisz zrozumieć jak działa zaktualizowany radar bota. Od teraz nasz radar <code>interactionCreate</code> musi obsługiwać dwie osobne rzeczy: komendy wpisywane z klawiatury (Slash) oraz kliknięcia w Menu rozwijane.</p>
+        
+        <div class="note">
+            Na samej górze pliku <code>index.js</code> nie zapomnij dodać narzędzi do czytania plików i tworzenia menu! W pierwszej linijce dodaj <code>StringSelectMenuBuilder</code> do nawiasów, a pod spodem dopisz nową linijkę: <code>const fs = require('fs');</code>
+        </div>
+
+        <p><strong>KROK 1: Wczytywanie bazy danych</strong><br>
+        Na samym początku radaru <code>interactionCreate</code> musimy dodać bezpieczny system wczytywania portfela gracza:</p>
+<pre><code>    // --- BEZPIECZNE WCZYTANIE BAZY DANYCH ---
+    let db;
+    try { 
+        db = JSON.parse(fs.readFileSync('./db.json', 'utf-8')); 
+    } catch (e) { 
+        db = {}; 
+    } 
+    
+    let uid = interaction.user.id;
+    if (!db[uid]) db[uid] = 0; // Jeśli gracz jest nowy, ustaw mu 0 na start</code></pre>
+
+        <p><strong>KROK 2: Sekcja Komend Slash (Wyświetlenie sklepu)</strong><br>
+        Następnie otwieramy blok dla komend slash za pomocą <code>if (interaction.isChatInputCommand()) {</code>. Wewnątrz niego dodajemy komendę, która czyta z pliku <code>sklep.json</code>, odnajduje prawdziwe nazwy ról na serwerze i tworzy z nich menu wyboru dla gracza:</p>
+<pre><code>        // KOMENDA: /sklep
+        if (interaction.commandName === 'sklep') {
+            const towary = JSON.parse(fs.readFileSync('./sklep.json', 'utf-8'));
+            const menu = new StringSelectMenuBuilder().setCustomId('sklep_menu').setPlaceholder('Kup role...');
+            
+            Object.keys(towary).forEach(id => { 
+                const rolaNaSerwerze = interaction.guild.roles.cache.get(id);
+                const nazwaRoli = rolaNaSerwerze ? rolaNaSerwerze.name : 'BŁĄD ID ROLI';
+                menu.addOptions({ label: `Rola: ${nazwaRoli}`, value: id, description: `Cena: ${towary[id]} monet` }); 
+            });
+            await interaction.reply({ content: 'Wybierz role:', components: [new ActionRowBuilder().addComponents(menu)], ephemeral: true });
+        }</code></pre>
+
+        <p><strong>KROK 3: Sekcja Menu (Zakup roli)</strong><br>
+        Gdy gracz wybierze rolę z rozwijanej listy, to już nie jest komenda Slash! Wychodzimy poza blok <code>isChatInputCommand</code> i dodajemy nowy warunek: <code>isStringSelectMenu</code>. To tutaj bot sprawdza stan konta, nadaje rolę i zapisuje zmiany do bazy danych:</p>
+<pre><code>    // --- SEKCJA MENU WYBORU (Obsługa kliknięcia w opcję w /sklep) ---
+    if (interaction.isStringSelectMenu() && interaction.customId === 'sklep_menu') {
+        const rolaId = interaction.values[0];
+        const towary = JSON.parse(fs.readFileSync('./sklep.json', 'utf-8'));
+        
+        if (db[uid] < towary[rolaId]) return interaction.reply({ content: 'Masz za malo kasy!', ephemeral: true });
+        
+        const rolaDoNadania = interaction.guild.roles.cache.get(rolaId);
+        if (!rolaDoNadania) return interaction.reply({ content: 'Blad: Taka rola nie istnieje na serwerze!', ephemeral: true });
+        
+        try {
+            await interaction.member.roles.add(rolaDoNadania);
+            db[uid] -= towary[rolaId];
+            fs.writeFileSync('./db.json', JSON.stringify(db, null, 2)); 
+            await interaction.reply({ content: `Udalo sie! Kupiono role **${rolaDoNadania.name}**.`, ephemeral: true });
+        } catch (error) {
+            await interaction.reply({ content: `**BŁĄD!** Bot nie może nadać tej roli. Przesuń rolę bota ponad role sklepowe w ustawieniach Serwera!`, ephemeral: true });
+        }
+    }</code></pre>
+    </div>
+
+    <div class="chapter">
+        <h2>ROZDZIAŁ 12: PEŁNY KOD (PUNKT KONTROLNY)</h2>
+        <div class="success">
+            <strong>Wszystko w jednym miejscu!</strong> Jeśli w trakcie nauki twój kod przestał działać, pogubiłeś się w układaniu klamerek, wyskakują błędy w terminalu, lub po prostu chcesz mieć gotowy, w pełni funkcjonujący kod łączący wszystkie nasze lekcje w jedną spójną całość – znajdziesz go poniżej. Skopiuj ten kod, zastąp nim całą zawartość swojego pliku <code>index.js</code> i baw się dobrze!
+        </div>
+
+<pre><code>// 1. IMPORTOWANIE NARZĘDZI I KONFIGURACJA
+const { Client, GatewayIntentBits, ApplicationCommandOptionType, ActionRowBuilder, ButtonBuilder, ButtonStyle, StringSelectMenuBuilder } = require('discord.js');
+const fs = require('fs');
+
+const TOKEN = 'TUTAJ_WKLEJ_SWOJ_TAJNY_TOKEN';
+
+// 2. TWORZENIE BOTA
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent
+    ]
+});
+
+// 3. KIEDY BOT SIE URUCHOMI... (REJESTRACJA KOMEND)
+client.on('ready', () => {
+    console.log(`Zrobione! Bot zalogowal sie jako: ${client.user.tag}`);
+    client.application.commands.create({ name: 'eko', description: 'Graj w karty' }); 
+    client.application.commands.create({ name: 'portfel', description: 'Stan konta' });
+    client.application.commands.create({ name: 'sklep', description: 'Kup role' });
+    client.application.commands.create({
+        name: 'del',
+        description: 'Usuwa wiadomosci',
+        options: [{
+            name: 'ilosc',
+            description: 'Ile usunac?',
+            type: ApplicationCommandOptionType.Integer,
+            required: true
+        }]
+    });
+});
+
+// 4. KIEDY KTOS NAPISZE ZWYKLA WIADOMOSC...
+client.on('messageCreate', (message) => {
+    if (message.author.bot) return;
+
+    if (message.content === '!ping') {
+        message.reply('Pong! Moj pierwszy kod dziala!');
+    }
+});
+
+// 5. RADAR NA INTERAKCJE (SLASH, PRZYCISKI I MENU)
+client.on('interactionCreate', async (interaction) => {
+    
+    // --- BEZPIECZNE WCZYTANIE BAZY DANYCH ---
+    let db;
+    try { 
+        db = JSON.parse(fs.readFileSync('./db.json', 'utf-8')); 
+    } catch (e) { 
+        db = {}; 
+    } 
+    
+    let uid = interaction.user.id;
+    if (!db[uid]) db[uid] = 0; // Jeśli gracz jest nowy, ustaw mu 0 na start
+
+    // --- SEKCJA A: KOMENDY SLASH (Wpisywane z klawiatury) ---
+    if (interaction.isChatInputCommand()) {
+        
+        // KOMENDA: /sklep
+        if (interaction.commandName === 'sklep') {
+            const towary = JSON.parse(fs.readFileSync('./sklep.json', 'utf-8'));
+            const menu = new StringSelectMenuBuilder().setCustomId('sklep_menu').setPlaceholder('Kup role...');
+            
+            Object.keys(towary).forEach(id => { 
+                const rolaNaSerwerze = interaction.guild.roles.cache.get(id);
+                const nazwaRoli = rolaNaSerwerze ? rolaNaSerwerze.name : 'BŁĄD ID ROLI';
+                menu.addOptions({ label: `Rola: ${nazwaRoli}`, value: id, description: `Cena: ${towary[id]} monet` }); 
+            });
+            await interaction.reply({ content: 'Wybierz role:', components: [new ActionRowBuilder().addComponents(menu)], ephemeral: true });
+        }
+
+        // KOMENDA: /del
+        if (interaction.commandName === 'del') {
+            const liczba = interaction.options.getInteger('ilosc');
+            await interaction.channel.bulkDelete(liczba);
+            await interaction.reply({ content: `Usunieto ${liczba} wiadomosci!`, ephemeral: true });
+        }
+        
+        // KOMENDA: /portfel
+        if (interaction.commandName === 'portfel') {
+            let kasa = db[uid]; 
+            await interaction.reply(`Masz ${kasa} monet.`);
+        }
+
+        // KOMENDA: /eko (KASYNO Z PRZYCISKAMI)
+        if (interaction.commandName === 'eko') {
+            let karta1 = Math.floor(Math.random() * 10) + 1;
+            const rzad = new ActionRowBuilder().addComponents(
+                new ButtonBuilder().setCustomId('ryzykuj').setLabel('Ryzykuj!').setStyle(ButtonStyle.Danger),
+                new ButtonBuilder().setCustomId('odbierz').setLabel(`Zabierz ${karta1}`).setStyle(ButtonStyle.Success)
+            );
+
+            const msg = await interaction.reply({ content: `Masz karte: ${karta1}. Ryzykujesz?`, components: [rzad] });
+            const kol = msg.createMessageComponentCollector({ time: 30000 });
+
+            kol.on('collect', async (i) => {
+                if (i.user.id !== interaction.user.id) return i.reply({ content: 'To nie Twoja gra!', ephemeral: true });
+                
+                if (i.customId === 'odbierz') { 
+                    db[uid] += karta1; 
+                    await i.update({ content: `Zabrales ${karta1} monet!`, components: [] });
+                } else { 
+                    let karta2 = Math.floor(Math.random() * 10) + 1;
+                    if (karta2 > karta1) {
+                        let win = (karta2 === 10) ? 100 : karta2;
+                        db[uid] += win; 
+                        await i.update({ content: `WYGRANA! Masz ${karta2}. Zgarniasz ${win} monet!`, components: [] });
+                    } else {
+                        await i.update({ content: `PRZEGRANA! Masz ${karta2}. Tracisz wszystko.`, components: [] });
+                    }
+                }
+                
+                // Po grze nadpisujemy plik ze zmienionymi monetami:
+                fs.writeFileSync('./db.json', JSON.stringify(db, null, 2));
+                kol.stop();
+            });
+        }
+    }
+
+    // --- SEKCJA B: MENU WYBORU (Obsługa kliknięcia w opcję w /sklep) ---
+    if (interaction.isStringSelectMenu() && interaction.customId === 'sklep_menu') {
+        const rolaId = interaction.values[0];
+        const towary = JSON.parse(fs.readFileSync('./sklep.json', 'utf-8'));
+        
+        if (db[uid] < towary[rolaId]) return interaction.reply({ content: 'Masz za malo kasy!', ephemeral: true });
+        
+        const rolaDoNadania = interaction.guild.roles.cache.get(rolaId);
+        if (!rolaDoNadania) return interaction.reply({ content: 'Blad: Taka rola nie istnieje na serwerze!', ephemeral: true });
+        
+        // Zabezpieczenie przed błędem hierarchii ról z Rozdziału 10
+        try {
+            await interaction.member.roles.add(rolaDoNadania);
+            db[uid] -= towary[rolaId];
+            fs.writeFileSync('./db.json', JSON.stringify(db, null, 2)); 
+            await interaction.reply({ content: `Udalo sie! Kupiono role **${rolaDoNadania.name}**.`, ephemeral: true });
+        } catch (error) {
+            await interaction.reply({ content: `**BŁĄD!** Bot nie może nadać tej roli. Przesuń rolę bota ponad role sklepowe w ustawieniach Serwera!`, ephemeral: true });
+        }
+    }
+
+});
+
+// 6. LOGOWANIE BOTA
+client.login(TOKEN);</code></pre>
+    </div>
+
+    <div class="chapter">
+        <h2>ZADANIE: KOMENDA /PRACA</h2>
+        <p>Zanim przejdziesz do słownika, spróbuj samodzielnie stworzyć nową komendę o nazwie <code>/praca</code>. Wymagania:</p>
+        <ol>
+            <li>Po jej użyciu bot ma wysłać wiadomość z zielonym przyciskiem o napisie "Pracuj".</li>
+            <li>Kiedy użytkownik w niego kliknie, bot ma zaktualizować bazę danych dodając mu 5 monet (<code>db[uid] += 5</code>) i zapisać plik z bazą (<code>fs.writeFileSync...</code>).</li>
+            <li>Bot ma odpisać po udanej pracy: "Zarobiłeś 5 coinów!".</li>
+        </ol>
+    </div>
+
+    <div class="chapter">
+        <h2>PEŁNY SŁOWNIK POJĘĆ</h2>
+        <ul>
+            <li><strong>const</strong>: Tworzy pudełko z informacją, której bot nie może zmienić w trakcie pracy.</li>
+            <li><strong>require</strong>: Komenda, która pobiera odpowiednią instrukcję/paczkę narzędzi (np. <code>discord.js</code> lub moduł plików <code>fs</code>).</li>
+            <li><strong>Client / Intents</strong>: Główny mózg bota oraz zestaw pozwoleń, na co bot może patrzeć.</li>
+            <li><strong>client.on('ready')</strong>: Radar, który alarmuje, gdy tylko bot włączy się i jest gotowy do pracy.</li>
+            <li><strong>client.on('messageCreate')</strong>: Radar, który budzi się, kiedy ktokolwiek napisze zwykłą wiadomość na kanale.</li>
+            <li><strong>client.on('interactionCreate')</strong>: Nowoczesny radar, obsługujący komendy ukośnikowe (<code>/</code>), przyciski oraz menu wyboru.</li>
+            <li><strong>interaction.reply</strong>: Najprostszy sposób, by bot odpowiedział konkretnej osobie po wpisaniu komendy.</li>
+            <li><strong>ephemeral: true</strong>: Sekretna wiadomość. Pojawia się na ekranie tylko osobie, która nacisnęła przycisk, dla reszty serwera jest niewidoczna.</li>
+            <li><strong>fs.readFileSync / fs.writeFileSync</strong>: Magiczne polecenia, które pozwalają botowi fizycznie czytać i zapisywać dane do plików (np. <code>.json</code>) na twoim komputerze.</li>
+            <li><strong>JSON.parse</strong>: Tłumacz tekstów. Zamienia linijki tekstu z pliku <code>.json</code> na kod, na którym bot może pracować.</li>
+            <li><strong>JSON.stringify</strong>: Tłumacz powrotny. Bierze dane z pamięci bota i zamienia je w tekst gotowy do wklejenia w plik.</li>
+            <li><strong>try { ... } catch (error) { ... }</strong>: Kamizelka ratunkowa dla bota. Jeśli kod w sekcji "try" wyrzuci błąd (np. brak pliku lub brak uprawnień), bot nie wyłączy się z hukiem, tylko przejdzie do sekcji "catch" i wykona bezpieczną alternatywę.</li>
+            <li><strong>interaction.options.getInteger</strong>: Sprawdza, jaką liczbę ktoś wpisał korzystając z komendy (np. z komendą <code>/del</code>).</li>
+            <li><strong>bulkDelete</strong>: Służy do masowego kasowania wielu wiadomości z czatu jednocześnie.</li>
+            <li><strong>ActionRowBuilder</strong>: "Szufladka" na komponenty. Żaden przycisk ani menu nie może istnieć samodzielnie, muszą być do niej włożone.</li>
+            <li><strong>ButtonBuilder</strong>: Służy do tworzenia i personalizowania przycisków.</li>
+            <li><strong>ButtonStyle</strong>: Styluje kolor przycisku (<code>Success</code> = Zielony, <code>Danger</code> = Czerwony).</li>
+            <li><strong>StringSelectMenuBuilder</strong>: Tworzy rozwijaną listę (tę, z której wybieramy role w sklepie).</li>
+            <li><strong>createMessageComponentCollector</strong>: Stoper z okiem. Bot czeka przez określony w kodzie czas na kliknięcie stworzonego elementu.</li>
+            <li><strong>interaction.member.roles.add</strong>: Magiczna różdżka nadająca wybraną rolę użytkownikowi. Wymaga odpowiedniej hierarchii ról na serwerze!</li>
+            <li><strong>interaction.guild.roles.cache.get()</strong>: Funkcja, która przeszukuje serwer po numerze ID i wyciąga z niego wszystkie informacje o roli (np. jej nazwę).</li>
+            <li><strong>Object.keys()</strong>: Polecenie, które wyciąga wszystkie nazwy własne (np. numery ID ról) z pliku sklepu i wypisuje je w liście menu.</li>
+            <li><strong>Math.random / Math.floor</strong>: Maszyna losująca liczby dziesiętne połączona z funkcją, która zaokrągla ułamek do pełnej liczby. W taki sposób uzyskaliśmy system szans.</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>
